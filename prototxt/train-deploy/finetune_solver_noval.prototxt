@@ -1,4 +1,4 @@
-net: "face_train_test_noval.prototxt"
+net: "/disk2/zhaoyafei/NormFace/prototxt/train-deploy/face_train_test_noval.prototxt"
 test_iter: 100 
 test_interval: 2000
 
@@ -11,6 +11,6 @@ display: 100
 momentum: 0.9
 weight_decay: 0.0005
 snapshot: 1000
-snapshot_prefix: "face_snapshot_finetune/face_train_test"
+snapshot_prefix: "face_snapshot_finetune/normface"
 
 solver_mode: GPU

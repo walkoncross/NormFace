@@ -8,13 +8,15 @@ layer {
     phase: TRAIN
   }
   transform_param {
-    mean_value: 128
+    mean_value: 127.5
+    mean_value: 127.5
+    mean_value: 127.5
     scale: 0.0078125
     mirror: true
   }
   image_data_param {
-    source: "/disk2/zhaoyafei/centerface-resnet-prototxt/train_list_noval_10572-ids_450833-objs_170503-213839.txt"
-    root_folder: "/disk2/data/FACE/webface/CASIA-maxpy-clean-aligned-zyf/"
+    source: "/disk2/zhaoyafei/centerface-resnet-prototxt-noval/train_list_noval_10572-ids_450833-objs_170503-213839.txt"
+    root_folder: "/"
     batch_size: 64 
     shuffle: true
     #balance_class: true
@@ -29,7 +31,9 @@ layer {
 #    phase: TEST
 #  }
 #  transform_param {
-#    mean_value: 128
+#    mean_value: 127.5
+#    mean_value: 127.5
+#    mean_value: 127.5
 #    scale: 0.0078125
 #    mirror: true
 #  }

@@ -1,10 +1,11 @@
 FROM nvidia/cuda:8.0-cudnn6-devel
 LABEL maintainer "zhaoyafei0210@gmail.com"
 
-RUN sed -i s/archive.ubuntu.com/mirrors.163.com/g /etc/apt/sources.list
-RUN sed -i s/security.ubuntu.com/mirrors.163.com/g /etc/apt/sources.list
+# For Users in China to accelerate 'apt-get install'
+#RUN sed -i s/archive.ubuntu.com/mirrors.163.com/g /etc/apt/sources.list
+#RUN sed -i s/security.ubuntu.com/mirrors.163.com/g /etc/apt/sources.list
 
-RUN rm /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list
+#RUN rm /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \

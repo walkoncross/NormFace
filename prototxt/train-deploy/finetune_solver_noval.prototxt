@@ -1,6 +1,6 @@
 net: "/disk2/zhaoyafei/NormFace/prototxt/train-deploy/face_train_test_noval.prototxt"
-test_iter: 100 
-test_interval: 2000
+#test_iter: 100 
+#test_interval: 2000
 
 base_lr: 0.001
 lr_policy: "fixed"

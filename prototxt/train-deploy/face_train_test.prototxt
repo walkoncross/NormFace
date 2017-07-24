@@ -39,7 +39,7 @@ layer {
   }
   image_data_param {
     source: "/disk2/zhaoyafei/centerface-resnet-prototxt/val_list_ratio-0.1_10447-ids_40290-objs_170722-101513.txt"
-    root_folder: "/disk2/data/FACE/webface/CASIA-maxpy-clean-aligned-zyf/"
+    root_folder: "/"
     batch_size: 32
     shuffle: true
   }

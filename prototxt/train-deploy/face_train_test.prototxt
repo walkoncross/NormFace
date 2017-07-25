@@ -17,7 +17,8 @@ layer {
   image_data_param {
     source: "/disk2/zhaoyafei/centerface-resnet-prototxt/train_list_ratio-0.9_10572-ids_410543-objs_170722-101513.txt"
     root_folder: "/"
-    batch_size: 64 
+    #batch_size: 64 
+	batch_size: 256 
     shuffle: true
     #balance_class: true
   }
@@ -40,7 +41,8 @@ layer {
   image_data_param {
     source: "/disk2/zhaoyafei/centerface-resnet-prototxt/val_list_ratio-0.1_10447-ids_40290-objs_170722-101513.txt"
     root_folder: "/"
-    batch_size: 32
+    #batch_size: 32
+    batch_size: 128
     shuffle: true
   }
 }

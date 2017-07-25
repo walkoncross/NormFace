@@ -17,7 +17,8 @@ layer {
   image_data_param {
     source: "/disk2/zhaoyafei/centerface-resnet-prototxt-noval/train_list_noval_10572-ids_450833-objs_170503-213839.txt"
     root_folder: "/"
-    batch_size: 64 
+    #batch_size: 64 
+	batch_size: 256 
     shuffle: true
     #balance_class: true
   }

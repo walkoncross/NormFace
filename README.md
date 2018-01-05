@@ -1,7 +1,7 @@
 # NormFace
 NormFace: L2 HyperSphere Embedding for Face Verification
 
-https://arxiv.org/abs/1704.06369
+http://www.cs.jhu.edu/~alanlab/Pubs17/wang2017normface.pdf
 
 | Baseline Model      | Original Accuracy | Finetune Using Normalization |
 | ------------------- |:-----------------:|:----------------------------:|
@@ -12,7 +12,7 @@ https://arxiv.org/abs/1704.06369
 
 # Requirements
 
-1. My Caffe (https://github.com/happynear/caffe-windows/tree/ms). It also works on Linux. Anyway, if you want to use your own Caffe, please transplant the `inner_product_layer`, `inner_distance_layer`, `normalize_layer`, `general_contrastive_layer`, `flip_layer`, `softmax_layer` and `accuracy_layer` to your Caffe. Since there are too many layers to transplant, I suggest you to use my Caffe directly:)
+1. My Caffe (https://github.com/happynear/caffe-windows/tree/ms). It also works on Linux. Anyway, if you want to use your own Caffe, please transplant the `inner_product_layer`, `inner_distance_layer`, `normalize_layer`, `general_contrastive_layer`, `flip_layer` and `accuracy_layer` to your Caffe. Since there are too many layers to transplant, I suggest you to use my Caffe directly:)
 2. Matlab to draw some figures.
 3. GPU with CUDA support.
 4. MTCNN face and facial landmark detector(https://github.com/kpzhang93/MTCNN_face_detection_alignment).
@@ -20,8 +20,9 @@ https://arxiv.org/abs/1704.06369
 
 # Train
 
-1. The dataset used in this paper is [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html). Note that there are 3 identities overlap between CASIA-Webface and LFW. They are `0166921`, `1056413` and `1193098`. For fair evaluation, it is recommended to remove them from CAISA-Webface. 
-2. Align all face images using MTCNN. The script can be found in [my another github repository](https://github.com/happynear/FaceVerification/blob/master/dataset/general_align.m).
+1. The dataset used in this paper is [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html). Note that there are 3 identities overlap between CASIA-Webface and LFW. They are `0166921`, `1056413` and `1193098`. For fair evaluation, it is recommended to remove them from CAISA-Webface.
+Update: Actually there are 17 overlap identities, the list is in [my FaceDatasets repository](https://github.com/happynear/FaceDatasets/blob/master/CASIA/webface_lfw_overlap_detail.txt).
+2. Align all face images using MTCNN. The script can be found in [my FaceVerification repository](https://github.com/happynear/FaceVerification/blob/master/dataset/general_align.m).
 3. Replace the final inner-product layer and softmax layer with layers defined in [scaled_cosine_softmax.prototxt](./prototxt/scaled_cosine_softmax.prototxt) or [normalized_Euclidean_contrastive.prototxt](./prototxt/normalized_Euclidean_contrastive.prototxt).
 4. **Fine-tune** the network based on the original model using a small learning rate, say 0.001 or 0.0001.
 
@@ -41,7 +42,7 @@ Light CNN B model(98.78%): [Google Drive](https://drive.google.com/open?id=0B0Oh
 
 ps: I used to get a model of 98.8%, but I lost it....
 
-Center Face model(99.21%): [Google Drive](https://drive.google.com/open?id=0B0OhXbSTAU1HM2NWcWFiN2lvbTg) or [Baidu Yun](https://pan.baidu.com/s/1i4Q4vD7).
+Center Face (ResNet-27) model(99.21%): [Google Drive](https://drive.google.com/open?id=0B0OhXbSTAU1HM2NWcWFiN2lvbTg) or [Baidu Yun](https://pan.baidu.com/s/1i4Q4vD7).
 
 # License
 
@@ -51,11 +52,13 @@ This code is distributed under MIT LICENSE. The released models are only allowed
 
 If you find my paper or the codes useful in your research, please cite
 ```
-@article{Wang2017NormFace,
-Author = {Feng Wang and Xiang Xiang and Jian Cheng and Alan L. Yuille},
-Title = {NormFace: L2 Hypersphere Embedding for Face Verification},
-Year = {2017},
-Eprint = {arXiv:1704.06369}
+@inproceedings{wang2017normface,
+  title={NormFace: L2 Hypersphere Embedding for Face Verification},
+  author={Wang, Feng and Xiang, Xiang and Cheng, Jian and Yuille, Alan L.},
+  booktitle={Proceedings of the 25th ACM international conference on Multimedia},
+  year={2017},
+  organization={ACM},
+  doi = {https://doi.org/10.1145/3123266.3123359}
 }
 ```
 

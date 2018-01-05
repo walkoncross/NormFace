@@ -5,38 +5,54 @@ layer {
   top: "norm1"
 }
 layer {
-  name: "normalized_Euclidean"
-  type: "InnerDistance"
-  bottom: "norm1"
-  top: "normalized_Euclidean"
+  name: "id_weight_l2"
+  type: "Parameter"
+  top: "id_weight_l2"
   param {
-    lr_mult: 100
+    lr_mult: 1
     decay_mult: 0
   }
-  inner_distance_param{
-    bias_term: false
-    distance_type: "L2"
-    normalize: true
-    num_output: 10572
-    weight_filler {
+  parameter_param {
+    shape {
+      dim: 10572 # class number
+      dim: 512 # feature dimension
+    }
+    blob_filler {
       type: "gaussian_unitball"
     }
   }
 }
 layer {
-  name: "contrastive_loss"
-  type: "GeneralContrastiveLoss"
+  name: "id_weight_l2_normalize"
+  type: "Normalize"
+  bottom: "id_weight_l2"
+  top: "id_weight_l2_normalize"
+}
+layer {
+  name: "normalized_Euclidean"
+  type: "InnerDistance"
+  bottom: "norm1"
+  bottom: "id_weight_l2_normalize"
+  top: "normalized_Euclidean"
+  inner_distance_param{
+    bias_term: false
+    distance_type: "L2"
+  }
+}
+layer {
+  name: "triplet_loss"
+  type: "GeneralTripletLoss"
   bottom: "normalized_Euclidean"
   bottom: "label"
   top: "contrastive_loss"
   top: "mean_distance"
   loss_weight: 1
   loss_weight: 1
-  general_contrastive_loss_param {
-    positive_margin: 0
-    negative_margin: 1
+  general_triplet_loss_param {
+    margin: 0.8
+    add_center_loss: true
+    hardest_only: true
     negative_weight: 1
-    exp_negative_weight: false
   }
 }
 

@@ -51,5 +51,8 @@ ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
+# mkdir for train snapshot
+RUN mkdir /opt/caffe/face_snapshot_finetune
+
 WORKDIR /workspace
 #RUN git clone --depth=1 https://github.com/happynear/NormFace.git
